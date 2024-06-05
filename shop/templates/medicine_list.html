@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Medicine List</title>
+</head>
+<body>
+    <h1>Medicine List</h1>
+    <a href="{% url 'add_medicine' %}">Add Medicine</a>
+    <form method="get" action="{% url 'search_medicine' %}">
+        <input type="text" name="p" placeholder="Search">
+        <button type="submit">Search</button>
+    </form>
+    <ul>
+        {% for medicine in medicines %}
+        <li>
+            {{ medicine.name }}
+            <a href="{% url 'edit_medicine' medicine.id %}">Edit</a>
+            <a href="{% url 'delete_medicine' medicine.id %}">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
